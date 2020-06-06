@@ -4,7 +4,9 @@
   "description": "Serverless PR Lint",
   "main": "index.js",
   "scripts": {
-    "start": "functions-framework --target=prLint"
+    "start": "functions-framework --target=prLint",
+    "lint": "eslint '**/*.js' --fix",
+    "format": "prettier --write '**/*.js'"
   },
   "author": "ArvinH",
   "license": "MIT",
@@ -14,9 +16,30 @@
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
     "eslint": "^7.2.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.3",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.9",
     "prettier": "^2.0.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "**/*.js": [
+      "npm run format",
+      "npm run lint"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   }
 }
