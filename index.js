@@ -67,9 +67,7 @@ exports.prLint = async (req, res) => {
     }
     return res.status(200);
   } else {
-    // Redirect since we don't need anyone visiting our service
-    // if they happen to stumble upon our URL
-    res.writeHead(301, { Location: 'https://github.com/arvinhv/prlint-serverless' });
+    res.writeHead(301, { Location: 'https://github.com/ArvinH/prlint-serverless' });
     res.end();
   }
 };
