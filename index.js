@@ -15,7 +15,7 @@ const getAccessToken = async function (installationId = '') {
   try {
     // Get a JWT every time
     let JWT = getJWT();
-    const response = await fetch(`${GITHUB_API_URL}/installations/${installationId}/access_tokens`, {
+    const response = await fetch(`${GITHUB_API_URL}/app/installations/${installationId}/access_tokens`, {
       method: 'POST',
       headers: {
         Accept: 'application/vnd.github.machine-man-preview+json',
